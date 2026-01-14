@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Tanguy Jehl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary-blue: #2563EB; /* Bleu moderne */
+            --dark-text: #1e293b;
+            --light-text: #64748b;
+            --bg-color: #ffffff;
+            --section-bg: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb, #3b82f6); /* Dégradé bleu comme le footer */
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white; /* Texte blanc */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-btn {
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white; /* Texte blanc */
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: #fffb; /* Légère teinte pour hover si tu veux un effet subtil */
+            background: rgba(255, 255, 255, 0.1); /* Légère surbrillance */
+        }
+
+
+        /* --- LAYOUT UTILS --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #3b82f6, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+
+        /* --- HEADER / BANNER --- */
+        header {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+            position: relative;
+            margin-top: 60px;
+        }
+
+        /* Touche artistique abstraite en CSS */
+        .art-shape {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--primary-blue);
+            opacity: 0.05;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            filter: blur(50px);
+        }
+
+        .header-content {
+            z-index: 1;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .intro-text p {
+            font-size: 1rem;
+            color: var(--light-text);
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: -webkit-linear-gradient(45deg, #1e293b, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+        }
+        .contact-btn {
+            display: inline-block;
+            margin-top: 0rem;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Dégradé bleu */
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35); /* Ombre bleue */
+            transition: 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-image-container {
+            width: 380px; 
+            height: 380px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
+            transition: 0.4s ease;
+        }
+
+        .about-text-card {
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07); 
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        /* --- PASSION SECTION (MODIFIÉE: Fond Blanc & Espacement) --- */
+        #passion-section {
+            background-color: var(--white); /* Retrait du fond gris */
+            padding-top: 8rem; /* Espacement augmenté pour écarter du bouton "Me contacter" */
+        }
+
+        .passion-image-container {
+            width: 380px; 
+            height: 380px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            position: relative; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
+            transition: 0.4s ease;
+        }
+
+        .passion-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* --- SKILLS --- */
+        #skills-section {
+            padding-top: 4rem; /* Réajusté car la section passion vient avant */
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-blue);
+            text-align: center;
+            opacity: 0; 
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .skill-card h3 { margin-bottom: 1rem; }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .tag {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #certifications {
+            background: var(--bg-color);
+            padding: 4rem 0;
+        }
+
+        .certif-card {
+            border-top: 4px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        /* --- VOYAGE SECTION NOUVEAUX STYLES --- */
+        .travel-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .travel-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .travel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .travel-card h3 {
+            font-size: 1.25rem;
+            color: var(--dark-text);
+            padding: 1rem 0;
+            margin: 0;
+            border-bottom: 3px solid var(--primary-blue);
+            margin-bottom: 0; 
+        }
+
+        .travel-image-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .travel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .travel-card:hover .travel-image {
+            transform: scale(1.05);
+        }
+        /* --- FIN VOYAGE SECTION NOUVEAUX STYLES --- */
+
+
+        /* --- TIMELINE (EXPERIENCE & FORMATION) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 20px; /* Mobile layout default */
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            margin-bottom: 2rem;
+            opacity: 0; 
+            transform: translateX(-50px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline-item.right {
+            transform: translateX(50px);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: auto;
+            left: 13px;
+            background-color: var(--white);
+            border: 4px solid var(--primary-blue);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .company {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            display: block;
+            font-style: italic;
+        }
+
+        /* --- PROJECTS PAGE --- */
+        #projects-view {
+            display: none; 
+            padding-top: 100px;
+            padding-bottom: 6rem;
+            min-height: 100vh;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer; /* Ajouté pour indiquer la cliquabilité */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.03); /* Ajout d'un léger zoom de 3% */
+        }
+        
+        /* Nouveau style pour l'image dans la carte de projet */
+        .project-image-container {
+            height: 200px; /* Conserver la même hauteur que le placeholder */
+            overflow: hidden;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Important: s'assure que l'image couvre le bloc sans déformer */
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb, #3b82f6);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* --- MODAL CAROUSEL --- */
+        .modal {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9); /* Fond noir semi-transparent */
+            backdrop-filter: blur(5px);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1000px; /* Taille maximale pour le carrousel */
+            position: relative;
+            animation-name: modalopen;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes modalopen {
+            from {opacity: 0} 
+            to {opacity: 1}
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #111;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%; /* Chaque slide prend 100% de la largeur du container */
+            max-height: 80vh; /* Limite la hauteur de l'image pour ne pas cacher les contrôles */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-slide img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            object-fit: contain; /* L'image est contenue sans être coupée */
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 2001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* La classe .caption-container a été retirée du CSS */
+
+
+        /* --- RESPONSIVE --- */
+        @media screen and (min-width: 768px) {
+            .timeline::after { left: 50%; }
+            .timeline-item { width: 50%; }
+            .left { left: 0; transform: translateX(-50px); } 
+            .right { left: 50%; transform: translateX(50px); } 
+            .left::after { left: auto; right: -10px; }
+            .right::after { left: -10px; }
+            
+            /* Alignement du contenu */
+            .left .timeline-content { text-align: right; }
+            .right .timeline-content { text-align: left; }
+            
+            /* Ajustement animation pour la timeline */
+            .timeline-item.left.animate { transform: translateX(0); }
+            .timeline-item.right.animate { transform: translateX(50%); } 
+        }
+
+        @media screen and (max-width: 600px) {
+            .prev, .next {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .close {
+                top: 5px;
+                right: 15px;
+                font-size: 30px;
+            }
+            
+            /* Pour la section passion sur mobile */
+            #passion-section .container {
+                flex-direction: column-reverse; /* Pour que l'image soit en haut sur mobile */
+            }
+            
+            /* Réaligner le titre section passion sur mobile */
+            #passion-section .section-title {
+                text-align: center !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+        }
+
+        /* --- KEYFRAMES D'ANIMATION --- */
+
+        @keyframes fadeInMoveUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleInFade {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 0.05;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+            animation-delay: 0.5s; 
+        }
+
+        @keyframes fadeInSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInSlideRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Application des animations au chargement */
+        .header-content h1 {
+            animation: fadeInMoveUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .header-content .intro-text {
+            animation: fadeInMoveUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .header-content .contact-btn {
+            animation: fadeInMoveUp 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .art-shape {
+            animation: scaleInFade 1.2s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+
+        .header-content { opacity: 0; }
+        nav { opacity: 0; animation: fadeIn 0.5s ease-out 0.8s forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Classes pour les animations au scroll (JavaScript va les ajouter) */
+        .animate-up {
+            animation: fadeInSlideUp 0.7s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .timeline-item.animate-left {
+            animation: fadeInSlideLeft 0.7s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .timeline-item.animate-right {
+            animation: fadeInSlideRight 0.7s ease-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        /* Délai pour les éléments en cascade (skills) */
+        .skill-card:nth-child(1).animate-up { animation-delay: 0.1s; }
+        .skill-card:nth-child(2).animate-up { animation-delay: 0.2s; }
+        .skill-card:nth-child(3).animate-up { animation-delay: 0.3s; }
+
+.logo-clickable {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.logo-clickable:hover {
+    opacity: 0.8; /* Donne un petit effet visuel au survol */
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo logo-clickable" onclick="showPage('home')">TANGUY.PNG</div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" class="nav-btn active" id="btn-home">Accueil</a>
+            <a onclick="showPage('projects')" class="nav-btn" id="btn-projects">Mes Projets</a>
+        </div>
+    </nav>
+
+    <div id="home-view">
+        
+        <header>
+            <div class="art-shape"></div>
+            <div class="header-content container" style="opacity: 1;"> 
+                
+                
+                
+                <section id="about" class="about-animate" style="padding: 8rem 0 5rem 0;">
+                    <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; justify-content: center;">
+
+                        <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;">
+                            <div class="about-image-container">
+                                <img src="logo tanguy.png.jpg" alt="Photo de Tanguy" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+
+                        <div style="flex: 1.2; min-width: 300px;" class="about-text-card">
+                            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.9rem; margin-bottom: 1rem; background: linear-gradient(90deg, #1e40af, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tanguy Jehl</h2>
+
+                            <p style="color: var(--light-text); font-size: 1rem; margin-bottom: 1rem; line-height: 1.6;">
+                                Passionné par la créativité et l’innovation, j’ai récemment obtenu ma licence en Commerce, Vente et Marketing. Après cette première expérience académique, j’ai décidé de me réorienter vers un domaine qui me passionne : <strong>le design graphique</strong>.
+                            </p>
+                            
+                            <p style="color: var(--light-text); font-size: 1rem; line-height: 1.6;">
+                                Actuellement étudiant en <strong>Bachelor Digital Design à Ynov Campus Strasbourg</strong>, je développe mes compétences en design et en création digitale pour donner une nouvelle direction à mon parcours professionnel. Je suis à la recherche d’opportunités et d’échanges dans le domaine du design et du digital. N’hésitez pas à me contacter pour échanger ! 🚀
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <a href="#contact" class="contact-btn scroll-to-contact">Me contacter</a>
+
+            </div>
+        </header>
+
+        <section id="passion-section">
+            <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; justify-content: center;">
+                
+                <div style="flex: 1.2; min-width: 300px;" class="animate-up">
+                    <h2 class="section-title" style="text-align: left; transform: none; left: 0;">Mes Passions : Sport & Musique</h2>
+                    
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-text);">Sport & Esprit d'équipe</h3>
+                    <p style="color: var(--light-text); font-size: 1rem; margin-bottom: 1rem; line-height: 1.6;">
+                        Je suis un passionné de sport en général, mais le football occupe une place centrale. J'évolue actuellement au <strong>FC Wittisheim</strong>, une expérience qui m'apprend' l'importance de la cohésion, du dépassement de soi et de la stratégie.
+                    </p>
+                    
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--dark-text);">Créativité Musicale</h3>
+                    <p style="color: var(--light-text); font-size: 1rem; line-height: 1.6;">
+                        Mon autre échappatoire est la musique. En duo avec un ami, je crée et compose des morceaux de rap et de hip-hop. C’est une façon pour moi d’exprimer une créativité différente et de trouver de l’inspiration.
+                    </p>
+                </div>
+                
+                <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;" class="animate-up">
+                    <div class="passion-image-container">
+                        <img src="photo foot tanguy.JPG" alt="Tanguy jouant au football" class="passion-image"> 
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="travel-section">
+            <div class="container">
+                <h2 class="section-title">Voyage & Découverte du Monde</h2> 
+                <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+                    <p class="animate-up" style="font-size: 1.1rem; color: var(--light-text); margin-bottom: 3rem; line-height: 1.8; opacity: 0;">
+                        Après l’obtention de ma licence, j’ai entrepris un voyage de trois mois aux <strong>États-Unis, au Japon et en Indonésie</strong>. Cette expérience m’a permis de découvrir des cultures variées et des univers visuels très différentes. Ce voyage a profondément nourri ma créativité et affiné mon regard que je réinvestis aujourd’hui dans mes projets.
+                    </p>
+                    
+                    <div class="travel-grid">
+                        <div class="travel-card animate-up" style="animation-delay: 0.1s; opacity: 0;">
+                            <h3>États-Unis</h3>
+                            <div class="travel-image-container">
+                                <img src="statut liberté.JPEG" alt="Paysage des États-Unis" class="travel-image">
+                            </div>
+                        </div>
+                        <div class="travel-card animate-up" style="animation-delay: 0.2s; opacity: 0;">
+                            <h3>Japon</h3>
+                            <div class="travel-image-container">
+                                <img src="photo japon 2.JPEG" alt="Paysage du Japon" class="travel-image">
+                            </div>
+                        </div>
+                        <div class="travel-card animate-up" style="animation-delay: 0.3s; opacity: 0;">
+                            <h3>Indonésie</h3>
+                            <div class="travel-image-container">
+                                <img src="photo bali.jpg" alt="Paysage d'Indonésie" class="travel-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills-section">
+            <div class="container">
+                <h2 class="section-title">Mes Compétences</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fa-solid fa-briefcase" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Business</h3>
+                        <div class="tags">
+                            <span class="tag">Commerce</span>
+                            <span class="tag">Marketing</span>
+                            <span class="tag">Gestion de projet</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fa-solid fa-pen-nib" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Design & Graphisme</h3>
+                        <div class="tags">
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Création Digitale</span>
+                        </div>
+                    </div>
+                   <div class="skill-card">
+                        <i class="fa-solid fa-earth-europe" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Langues & Outils</h3>
+                        <div class="tags">
+                            <span class="tag">Anglais B2</span>
+                            <span class="tag">Allemand A2</span>
+                            <span class="tag">Suite Office</span>
+                            <span class="tag">Intelligence Artificielle</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="container">
+                <h2 class="section-title">Certifications & Permis</h2>
+                <div class="skills-grid">
+                
+                    <div class="skill-card certif-card">
+                        <i class="fa-solid fa-certificate" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Certification Pix</h3>
+                        <p style="color: var(--light-text); font-size: 0.95rem;">
+                            Validation officielle des compétences numériques essentielles.
+                        </p>
+                    </div>
+
+                    <div class="skill-card certif-card">
+                        <i class="fa-solid fa-id-card" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Permis B</h3>
+                        <p style="color: var(--light-text); font-size: 0.95rem;">
+                            Permis de conduire catégorie B obtenu.
+                        </p>
+                    </div>
+
+                    <div class="skill-card certif-card">
+                        <i class="fa-solid fa-car" style="font-size: 2rem; color: var(--primary-blue); margin-bottom:1rem;"></i>
+                        <h3>Véhicule personnel</h3>
+                        <p style="color: var(--light-text); font-size: 0.95rem;">
+                            Autonome pour les déplacements professionnels.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section id="experiences">
+            <div class="container">
+                <h2 class="section-title">Expériences Professionnelles</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="company">HARTMANN GROUP</span>
+                            <span class="meta">Avril 2025 - Août 2025 · Lièpvre / Châtenois</span>
+                            
+                            <div style="margin-top: 15px; padding-left: 15px; border-left: 3px solid #eff6ff;">
+                                <h4 class="job-title" style="font-size: 1.1rem; margin-bottom: 5px;">
+                                    <i class="fa-solid fa-file-contract" style="color: var(--primary-blue); margin-right: 8px; font-size: 0.9rem;"></i>
+                                    Assistant Administratif
+                                </h4>
+                                <p style="font-size: 0.95rem; margin-bottom: 15px;">
+                                    Gestion des contrats intérimaires, contrôle des chiffres de production.
+                                </p>
+                            </div>
+
+                            <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 10px 0;">
+
+                            <div style="margin-top: 15px; padding-left: 15px; border-left: 3px solid #eff6ff;">
+                                <h4 class="job-title" style="font-size: 1.1rem; margin-bottom: 5px;">
+                                    <i class="fa-solid fa-car-side" style="color: var(--primary-blue); margin-right: 8px; font-size: 0.9rem;"></i>
+                                    Coursier
+                                </h4>
+                                <p style="font-size: 0.95rem;">
+                                    Gestion du courrier et colis, dépôts bancaires et coordination logistique entre les sites.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <span class="company">EGELHOF GROUP</span>
+                            <h4 class="job-title">Opérateur production</h4>
+                            <span class="meta">Juil. 2024 - Nov. 2024 · Breitenbach</span>
+                            <p>Fabrication, assemblage et contrôle qualité de pièces métalliques pour les secteurs de l’automobile et du chauffage.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="company">DISTILLERIE MEYER’S</span>
+                            <h4 class="job-title">Conseiller commercial</h4>
+                            <span class="meta">Juillet 2023 - Juin 2024 · Châtenois</span>
+                            <p>Accueil et conseil client, gestion commandes e-commerce, encaissement, animations estivales et coordination musée.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <span class="company">PEARL DIFFUSION</span>
+                            <h4 class="job-title">Stage Services Commerciaux</h4>
+                            <span class="meta">Nov. 2022 - Déc. 2022 · Sélestat</span>
+                            <p>Accueil client, montage vidéo, stocks, mise en rayon, mailing et animations commerciales.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="company">SAVONNERIE ARGASOL</span>
+                            <h4 class="job-title">Stage Assistant Commercial</h4>
+                            <span class="meta">Nov. 2021 - Déc. 2021 · Ste-Marie-aux-Mines</span>
+                            <p>Packaging, logistique marchés de Noël et vente avec conseil client (Marché de Strasbourg).</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <span class="company">AMCOR FLEXIBLES</span>
+                            <h4 class="job-title">Stage Service Commercial</h4>
+                            <span class="meta">Mai 2021 - Juillet 2021 · Sélestat</span>
+                            <p>Gestion des commandes, analyse de marché et optimisation des processus internes.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+     
+        <section id="formations">
+            <div class="container">
+                <h2 class="section-title">Formations</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="company">Strasbourg Ynov Campus</span>
+                            <h4 class="job-title">Bachelor Chef de Projet Digital, Graphic Design</h4>
+                            <span class="meta">Septembre 2025 – Aujourd’hui</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <span class="company">CNAM</span>
+                            <h4 class="job-title">Licence Commerce Vente et Marketing</h4>
+                            <span class="meta">Sept 2023 – Juillet 2024 (Admis)</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="company">Lycée Docteur Koeberlé</span>
+                            <h4 class="job-title">BTS Négociation et digitalisation relation clients</h4>
+                            <span class="meta">Sept 2020 – Juillet 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> 
+    
+    <div id="projects-view">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            
+            
+            <div class="projects-grid">
+                <div class="project-card" data-project="id-visuelle">
+                    <div class="project-image-container">
+                        <img src="pochette vinyle avant drake .png" alt="Aperçu projet identité visuelle" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Projet Vinyle Drake - Scorpion</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Design et Mockups</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project="maquette-web">
+                    <div class="project-image-container">
+                        <img src="astronaute.png" alt="Aperçu projet maquette web" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Univers spatial</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Illustration vectorielle, travail de composition et de contrastes</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project="pub-digitale">
+                    <div class="project-image-container">
+                        <img src="sprite.png" alt="Aperçu projet publicité digitale" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Affiche de pub pour Sprite</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Campagne social media fictive pour une marque</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-project="marketing-digital">
+                    <div class="project-image-container">
+                        <img src="poster-foret.png" alt="Aperçu projet marketing digital" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Un homme au coin du feu</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Poster réalisé sur Illustrator</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="projet-cinq">
+                    <div class="project-image-container">
+                        <img src="Oraya 1.png" alt="Aperçu Projet Cinq" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Direction Artistique de la marque ORAYA</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Projet d'école fictif de création de marque de luxe éco-responsable</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="projet-six">
+                    <div class="project-image-container">
+                        <img src="united arsenal (1).png" alt="Aperçu Projet Six" class="project-image">
+                    </div>
+                    <div class="project-info">
+                        <h3>Affiche de match</h3>
+                        <p style="font-size: 0.9rem; color: #64748b;">Création d'une affiche pour le match Manchester United vs Arsenal</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <footer id="contact">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Contactez-moi</h2>
+            <p style="margin-bottom: 2rem; color: #cbd5e1;">Ouvert aux opportunités et échanges.</p>
+            
+            
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/tanguy.png_/" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tanguy-jehl-561208235/" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:tanguyjehl@gmail.com" class="social-btn">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+            <p style="margin-top: 3rem; font-size: 0.8rem; opacity: 0.5;">© 2025 Tanguy Jehl. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+
+    <div id="projectModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    </div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA PROJECTS ---
+        // Les chemins d'images et les légendes pour chaque projet sont conservés ici 
+        const projectData = {
+            "id-visuelle": {
+                title: "Projet Vinyle Drake - Scorpion",
+                images: [
+                    { src: "pochette vinyle avant drake .png", caption: "Face avant de la pochette vinyle" },
+                    { src: "pochette arriere drake.png", caption: "Face arrière de la pochette vinyle" },
+                    { src: "mockup vinyle drake.png", caption: "Mockup du vinyle et de la pochette" },
+                    { src: "vinyle arriere drake.png", caption: "Disque vinyle face arrière" },
+                    { src: "vinyle avant blister.png", caption: "Vinyle sous blister, face avant" },
+                    { src: "arriere vinyle blister.png", caption: "Vinyle sous blister, face arrière" },
+                    { src: "banniere vinyle drake.png", caption: "Bannière promotionnelle du projet" }
+                ]
+            },
+            "maquette-web": {
+                title: "Univers spatial",
+                images: [
+                    { src: "astronaute.png", caption: "Illustration vectorielle d'un astronaute" }
+                ]
+            },
+            "pub-digitale": {
+                title: "Affiche de pub pour Sprite",
+                images: [
+                    { src: "sprite.png", caption: "Affiche publicitaire pour la marque Sprite" }
+                ]
+            },
+            "marketing-digital": {
+                title: "Un homme au coin du feu",
+                images: [
+                    { src: "poster-foret.png", caption: "Poster réalisé sur Illustrator, thème nature" }
+                ]
+            },
+            // NOUVEAUX PROJETS AJOUTÉS
+            "projet-cinq": {
+                title: "Direction Artistique de la marque ORAYA",
+                images: [
+                    // REMPLACEZ CES CHEMINS D'IMAGES PAR LES VÔTRES
+                    { src: "Oraya 1.png", caption: "Bannière publicitaire A/B testée" },
+                    { src: "charte graph oraya.png", caption: "Logo principal de la marque X" },
+                    { src: "Couleursoraya.png", caption: "Palette de couleurs et typographie" },
+                    { src: "Logo and Variations oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "univers oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "non oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "oui oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "police oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "produits oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "produit 1 oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "produit 2 oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "reseau sociau oraya.png", caption: "Mise en situation sur un support papier" },
+                    { src: "instagram oraya.png", caption: "Mise en situation sur un support papier" }
+                ]
+            },
+            "projet-six": {
+                title: "Affiche de match",
+                images: [
+                    // REMPLACEZ CES CHEMINS D'IMAGES PAR LES VÔTRES
+                    { src: "united arsenal (1).png", caption: "Image principale du Projet 6" },
+                    { src: "mockup arsenal man utd.png", caption: "Image principale du Projet 6" }
+                ]
+            }
+        };
+
+        let slideIndex = 1; // Index de la diapositive actuelle
+        let currentProjectImages = []; // Array des images du projet actuel
+        
+        // --- NAVIGATION PRINCIPALE ---
+        function showPage(pageName) {
+            const homeView = document.getElementById('home-view');
+            const projectsView = document.getElementById('projects-view');
+            
+            const btnHome = document.getElementById('btn-home');
+            const btnProjects = document.getElementById('btn-projects');
+
+            if (pageName === 'projects') {
+                homeView.style.display = 'none';
+                projectsView.style.display = 'block';
+                
+                // Active class
+                btnHome.classList.remove('active');
+                btnProjects.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            } else {
+                homeView.style.display = 'block';
+                projectsView.style.display = 'none';
+                
+                // Active class
+                btnHome.classList.add('active');
+                btnProjects.classList.remove('active');
+            }
+        }
+        
+        // --- GESTION DES MODALES/CAROUSEL ---
+
+        function openModal(projectKey) {
+            const data = projectData[projectKey];
+            if (!data) {
+                alert("Erreur: Données de projet introuvables. Vérifiez la clé dans projectData.");
+                return;
+            }
+
+            // 1. Mise à jour de la data globale du carrousel
+            currentProjectImages = data.images;
+            slideIndex = 1; // Réinitialisation à la première image
+            
+            // 2. Injection du HTML du carrousel
+            const track = document.getElementById('carousel-track');
+            track.innerHTML = ''; // Nettoyer l'ancien contenu
+            
+            data.images.forEach((img, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.dataset.index = index + 1;
+                
+                const image = document.createElement('img');
+                image.src = img.src;
+                // L'alt text est conservé pour l'accessibilité
+                image.alt = img.caption || data.title + " - Image " + (index + 1); 
+                
+                slide.appendChild(image);
+                track.appendChild(slide);
+            });
+            
+            // 3. Affichage et première diapositive
+            document.getElementById('projectModal').style.display = "block";
+            showSlides(slideIndex);
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = "none";
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("carousel-slide");
+            
+            if (currentProjectImages.length === 0 || slides.length === 0) return;
+            
+            if (n > slides.length) { slideIndex = 1 } // Revenir à la première
+            if (n < 1) { slideIndex = slides.length } // Aller à la dernière
+            
+            const offset = -(slideIndex - 1) * 100;
+            document.getElementById('carousel-track').style.transform = `translateX(${offset}%)`;
+            
+            // La mise à jour de la légende a été retirée ici (comme demandé)
+        }
+
+        // Événement clic sur les cartes de projet
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const projectKey = this.getAttribute('data-project');
+                openModal(projectKey);
+            });
+        });
+
+        // --- Intersection Observer pour les animations au défilement (Scroll Reveal) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    
+                    if (target.classList.contains('skill-card')) {
+                        target.classList.add('animate-up');
+                    }
+                    
+                    if (target.classList.contains('timeline-item')) {
+                        if (target.classList.contains('left')) {
+                            target.classList.add('animate-left');
+                        } else if (target.classList.contains('right')) {
+                            target.classList.add('animate-right');
+                        }
+                    }
+                    
+                    // NOUVEAU: Appliquer l'animation aux blocs de la section passion
+                    if (target.closest('#passion-section') && target.classList.contains('animate-up')) {
+                        target.classList.add('animate-up');
+                    }
+                    
+                    // NOUVEAU: Appliquer l'animation aux nouveaux éléments de la section voyage (texte et cartes)
+                    if (target.closest('#travel-section') && target.classList.contains('animate-up')) {
+                        target.classList.add('animate-up');
+                    }
+                    
+                    observer.unobserve(target);
+                }
+            });
+        }, {
+            rootMargin: '0px',
+            threshold: 0.1 
+        });
+
+        document.querySelectorAll('.skill-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // NOUVEAU: Observer les éléments de la section passion pour l'animation
+        document.querySelectorAll('#passion-section .animate-up').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // NOUVEAU: Observer l'élément de la section voyage pour l'animation (maintenant appliqué sur le texte et les cartes)
+        document.querySelectorAll('#travel-section .animate-up').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Scroll doux pour le bouton contact
+        document.querySelector('.scroll-to-contact').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const footer = document.querySelector('#contact');
+            footer.scrollIntoView({
+                behavior: 'smooth' 
+            });
+        });
+        
+        // Fermeture de la modale en cliquant en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Fermeture de la modale avec la touche Échap
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.key === 'Escape' && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
